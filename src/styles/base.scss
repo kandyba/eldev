@@ -1,0 +1,1744 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  /* width */
+  & ::-webkit-scrollbar {
+    width: 0;
+  }
+  @media screen and (max-width: $size-md) {
+    width: auto;
+  }
+}
+
+body {
+  background-color: $black100;
+  color: $white;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+// ***** RESET START *****
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+input {
+  position: relative;
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid $grey200;
+  background: none;
+  font-size: 16px;
+  line-height: 24px;
+  color: $white;
+  padding: 12px 40px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::-webkit-input-placeholder {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+button {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+
+  background: transparent;
+
+  /* inherit font & color from ancestor */
+  color: inherit;
+  font: inherit;
+
+  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+  line-height: normal;
+
+  /* Corrects font smoothing for webkit */
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+
+  cursor: pointer;
+
+  &::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
+
+  &:focus {
+    outline: 2px solid $grey500;
+  }
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  padding: 12px 16px;
+  text-transform: uppercase;
+  background: $black100;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  transition: 0.4s;
+
+  @media screen and (max-width: $size-lg) {
+    padding: 10px 14px;
+  }
+
+  &:hover,
+  &:focus {
+    background: $grey500;
+  }
+  &:disabled,
+  &:disabled:hover,
+  &:disabled:focus {
+    cursor: default;
+    background: $black100;
+    color: $grey500;
+
+    svg path {
+      stroke: $grey500;
+    }
+  }
+
+  &.light {
+    background: $primary;
+    color: $black100;
+
+    &:hover,
+    &:focus {
+      background: $primary-dark;
+      color: $white;
+
+      svg path {
+        stroke: $white;
+      }
+    }
+
+    svg path {
+      stroke: $black100;
+    }
+
+    &:disabled,
+    &:disabled:hover,
+    &:disabled:focus {
+      cursor: default;
+      background: $grey200;
+      color: $grey300;
+
+      svg path {
+        stroke: $grey300;
+      }
+    }
+  }
+
+  svg {
+    width: 20px;
+    margin-left: 8px;
+
+    & path {
+      transition: 0.4s;
+    }
+  }
+}
+
+// ***** RESET END *****
+
+// ***** COMMON START *****
+main > section {
+  height: 100vh;
+  overflow: hidden;
+
+  @media screen and (max-width: $size-md) {
+    height: auto;
+  }
+}
+
+.preloader {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: $white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: 0.5s;
+
+  &.hide {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+#services,
+#reviews {
+  background-color: $black400;
+}
+
+#instruments,
+#contacts {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.001) 30%,
+      $grey350
+    );
+
+    @media screen and (max-width: $size-md) {
+      bottom: 25px;
+    }
+  }
+}
+
+.h-100 {
+  height: 100%;
+}
+
+.hidden {
+  @media screen and (max-width: $size-md) {
+    display: none !important;
+  }
+}
+
+.relative {
+  position: relative;
+}
+
+.overflow {
+  overflow: hidden;
+}
+
+.quotes {
+  position: absolute;
+  left: 0;
+  top: -30px;
+  width: 65px;
+  pointer-events: none;
+}
+
+.text-dark {
+  color: $grey100;
+  opacity: 0.5;
+}
+
+.layout {
+  height: 100%;
+  padding-top: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media screen and (max-width: $size-md) {
+    height: auto;
+    display: block;
+    padding-top: 32px;
+  }
+
+  &__top > *:not(:last-child) {
+    margin-bottom: 28px;
+
+    @media screen and (max-width: $size-md) {
+      margin-bottom: 8px;
+    }
+  }
+  &__top > *:last-child {
+    @media screen and (max-width: $size-md) {
+      margin-bottom: 24px;
+    }
+  }
+
+  &__title {
+    text-transform: uppercase;
+    color: $primary;
+  }
+
+  &__description {
+    color: $grey100;
+  }
+
+  &__title,
+  &__description {
+    font-size: 14px;
+    line-height: 20px;
+
+    @media screen and (max-width: $size-md) {
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+
+  &__title-main {
+    font-size: 48px;
+    line-height: 56px;
+
+    @media screen and (max-width: $size-md) {
+      font-size: 32px;
+      line-height: 40px;
+    }
+  }
+
+  &__content {
+    width: 420px;
+
+    @media screen and (max-width: $size-md) {
+      width: 100%;
+    }
+  }
+
+  &__text {
+    color: $grey100;
+
+    @media screen and (max-width: $size-md) {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+
+  &__footer {
+    padding: 56px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @media screen and (max-width: $size-xl) {
+      padding: 35px 0;
+    }
+
+    @media screen and (max-width: $size-md) {
+      flex-direction: column;
+      padding: 24px 0 30px;
+    }
+  }
+}
+
+.background {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50%;
+  height: 100%;
+
+  &__item {
+    position: absolute;
+    right: 0;
+    left: 290px;
+    top: 0;
+    height: 100%;
+    object-fit: cover;
+
+    @media screen and (max-width: $size-xl) {
+      left: 260px;
+    }
+    @media screen and (max-width: $size-lg) {
+      left: 215px;
+    }
+  }
+  @media screen and (max-width: $size-md) {
+    display: none;
+  }
+}
+
+.scroll {
+  display: flex;
+  align-items: center;
+
+  &__icon {
+    width: 24px;
+    margin-right: 4px;
+  }
+
+  &__label {
+    color: $grey400;
+
+    @media screen and (max-width: $size-md) {
+      color: $white;
+    }
+  }
+
+  & svg path {
+    @media screen and (max-width: $size-md) {
+      stroke: $white;
+    }
+  }
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+
+  &__icon {
+    width: 16px;
+    margin-left: 4px;
+  }
+
+  &__label {
+    color: $primary;
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+.link_to {
+  cursor: pointer;
+}
+
+.scroll,
+.link,
+.main__label-sm {
+  font-size: 16px;
+  line-height: 24px;
+
+  @media screen and (max-width: $size-lg) {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+.caption {
+  display: flex;
+  align-items: center;
+  margin-top: 28px;
+
+  &__img {
+    width: 44px;
+    margin-right: 12px;
+
+    @media screen and (max-width: $size-md) {
+      width: 40px;
+    }
+  }
+
+  &__name {
+    color: $grey100;
+    margin-bottom: 2px;
+
+    @media screen and (max-width: $size-md) {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+
+  &__job-title {
+    color: $primary;
+    text-transform: uppercase;
+    font-size: 14px;
+    line-height: 20px;
+
+    @media screen and (max-width: $size-md) {
+      font-size: 12px;
+      line-height: 18px;
+    }
+  }
+}
+
+header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 16px 0;
+  width: 100%;
+  z-index: 999;
+
+  &.active:after {
+    opacity: 1;
+  }
+
+  &.active .nav__link {
+    color: $white;
+
+    span:before {
+      background: $white;
+    }
+  }
+
+  &:after {
+    transition: all ease-out 0.5s;
+    content: "";
+    background: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(17px);
+    z-index: -1;
+    opacity: 0;
+
+    @media screen and (max-width: $size-md) {
+      display: none;
+    }
+  }
+
+  &::before {
+    @media screen and (max-width: $size-md) {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      backdrop-filter: blur(17px);
+    }
+  }
+
+  @media screen and (max-width: $size-md) {
+    padding: 4px 0;
+  }
+
+  // visual helper for development
+  // &:before {
+  //   position: absolute;
+  //   left: 0;
+  //   top: 0;
+  //   content: "xxl";
+
+  //   @media screen and (max-width: $size-xl) {
+  //     content: "$size-xl";
+  //   }
+  //   @media screen and (max-width: $size-lg) {
+  //     content: "$size-lg";
+  //   }
+  //   @media screen and (max-width: $size-md) {
+  //     content: "$size-md";
+  //   }
+  //   @media screen and (max-width: $size-sm) {
+  //     content: "$size-sm";
+  //   }
+  // }
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__logo {
+    display: flex;
+    width: 125px;
+    z-index: 1;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &__links {
+    transition: right 0.4s ease-in;
+
+    @media screen and (max-width: $size-md) {
+      position: fixed;
+      right: -120%;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+      backdrop-filter: blur(17px);
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    &.active {
+      right: 0;
+    }
+
+    &-wrap {
+      display: flex;
+      align-items: center;
+
+      @media screen and (max-width: $size-md) {
+        display: block;
+        padding-top: 120px;
+      }
+    }
+  }
+
+  &__link {
+    text-transform: uppercase;
+    font-size: 14px;
+    line-height: 20px;
+    color: $grey350;
+    margin: 0 8px;
+    font-weight: 700;
+    transition: 0.4s;
+
+    @media screen and (max-width: $size-lg) {
+      margin: 0;
+    }
+
+    @media screen and (max-width: $size-md) {
+      font-size: 16px;
+      line-height: 24px;
+      color: $white;
+    }
+
+    &:hover {
+      color: $primary;
+    }
+
+    & span {
+      position: relative;
+
+      &:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 1px;
+        background: $primary;
+        transition: 0.4s;
+      }
+    }
+
+    &:hover span:before {
+      width: 100%;
+    }
+
+    &:hover {
+      color: $primary;
+    }
+
+    & a.link_to {
+      @media screen and (max-width: $size-md) {
+        display: inline-block;
+      }
+    }
+
+    & a {
+      padding: 8px 12px;
+
+      & span:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 1px;
+        background: $primary;
+        transition: 0.4s;
+      }
+
+      @media screen and (max-width: $size-lg) {
+        padding: 5px 10px;
+      }
+
+      @media screen and (max-width: $size-md) {
+        padding: 12px 16px;
+      }
+    }
+
+    & a.active {
+      & span:before {
+        width: 100%;
+      }
+
+      @media screen and (max-width: $size-md) {
+        color: $white;
+      }
+    }
+  }
+
+  &__action {
+    @media screen and (max-width: $size-md) {
+      display: none;
+    }
+  }
+
+  &__hamburger {
+    display: none;
+    width: 31px;
+    height: 30px;
+    position: relative;
+    transform: rotate(0deg);
+    transition: 0.5s ease-in-out;
+    margin-top: 8px;
+    cursor: pointer;
+
+    @media screen and (max-width: $size-md) {
+      display: block;
+    }
+
+    & span {
+      display: block;
+      position: absolute;
+      height: 3px;
+      width: 100%;
+      background: $white;
+      border-radius: 9px;
+      opacity: 1;
+      left: 0;
+      transform: rotate(0deg);
+      transition: 0.25s ease-in-out;
+    }
+
+    & span:nth-child(1) {
+      top: 0px;
+      transform-origin: left center;
+    }
+
+    & span:nth-child(2) {
+      top: 10px;
+      transform-origin: left center;
+    }
+
+    & span:nth-child(3) {
+      top: 20px;
+      transform-origin: left center;
+    }
+
+    &.active span:nth-child(1) {
+      transform: rotate(45deg);
+      top: 2px;
+      left: 4px;
+    }
+
+    &.active span:nth-child(2) {
+      width: 0%;
+      opacity: 0;
+    }
+
+    &.active span:nth-child(3) {
+      transform: rotate(-45deg);
+      top: 24px;
+      left: 4px;
+    }
+  }
+}
+
+.sidebar {
+  position: fixed;
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 999;
+
+  @media screen and (max-width: $size-xl) {
+    left: 30px;
+  }
+
+  @media screen and (max-width: $size-lg) {
+    left: 20px;
+  }
+
+  @media screen and (max-width: $size-md) {
+    display: none;
+  }
+
+  &__dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 2px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.4s;
+    cursor: pointer;
+
+    &:before {
+      content: "";
+      display: block;
+      width: 5px;
+      height: 5px;
+      background: $white;
+      border-radius: 5px;
+    }
+
+    &:hover {
+      background: rgba(79, 79, 79, 0.3);
+      border: 2px solid rgba(79, 79, 79, 1);
+    }
+
+    &.active {
+      background: rgba(79, 79, 79, 0.3);
+      border: 2px solid rgba(79, 79, 79, 1);
+    }
+  }
+}
+
+// ***** COMMON END *****
+
+// ***** MAIN START *****
+
+.main {
+  background-color: $black100;
+
+  @media screen and (max-width: $size-md) {
+    padding-top: 60px;
+  }
+
+  & .container {
+    position: relative;
+
+    @media screen and (max-width: $size-xl) {
+      position: static;
+    }
+  }
+
+  &__highlight {
+    position: absolute;
+    width: 66px;
+    top: 60px;
+    left: 387px;
+
+    @media screen and (max-width: $size-xl) {
+      left: 286px;
+    }
+    @media screen and (max-width: $size-lg) {
+      width: 55px;
+      top: 64px;
+      left: 190px;
+    }
+    @media screen and (max-width: $size-md) {
+      display: none;
+    }
+
+    &-sm {
+      display: none;
+
+      @media screen and (max-width: $size-md) {
+        display: block;
+        position: absolute;
+        width: 50px;
+        top: 50px;
+        left: 150px;
+        transform: scaleX(-1);
+      }
+    }
+  }
+
+  & .layout {
+    &__top {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    &__footer {
+      padding: 82px 360px 72px 0;
+
+      @media screen and (max-width: $size-xl) {
+        padding-right: 280px;
+      }
+      @media screen and (max-width: $size-lg) {
+        padding-right: 210px;
+      }
+
+      @media screen and (max-width: $size-md) {
+        position: relative;
+        display: block;
+        padding: 0;
+      }
+    }
+  }
+
+  &__block {
+    display: none;
+    margin-bottom: -10px;
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+
+    @media screen and (max-width: $size-md) {
+      display: block;
+    }
+
+    @media screen and (max-width: $size-sm) {
+      height: 400px;
+      object-fit: cover;
+    }
+  }
+
+  &__title {
+    width: 100%;
+
+    & h2 {
+      font-size: 96px;
+      line-height: 104px;
+
+      @media screen and (max-width: $size-lg) {
+        font-size: 75px;
+        line-height: 85px;
+      }
+
+      @media screen and (max-width: $size-md) {
+        font-size: 55px;
+        line-height: 60px;
+      }
+
+      @media screen and (max-width: $size-sm) {
+        font-size: 46px;
+        line-height: 53px;
+      }
+
+      &.white {
+        color: $white;
+      }
+
+      & span {
+        color: $grey400;
+
+        &.light {
+          color: $primary;
+        }
+      }
+    }
+  }
+
+  &__action {
+    display: none;
+
+    @media screen and (max-width: $size-md) {
+      display: flex;
+      position: absolute;
+      left: 10px;
+      top: 20px;
+    }
+  }
+
+  &__label-sm {
+    position: relative;
+    padding-right: 10px;
+
+    @media screen and (max-width: $size-md) {
+      position: absolute;
+      right: 0;
+      top: -55px;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 1px;
+      height: 100%;
+      background: $white;
+      animation: 0.45s infinite alternate blinker;
+    }
+  }
+
+  &__scroll {
+    display: none;
+    position: absolute;
+    left: 50%;
+    bottom: 50px;
+    transform: translateX(-50%);
+
+    @media screen and (max-width: $size-md) {
+      display: flex;
+    }
+
+    &:before {
+      content: "";
+      position: absolute;
+      bottom: -20px;
+      left: -10px;
+      right: -10px;
+      height: 5px;
+      border-radius: 3px;
+      background: $black100;
+    }
+
+    & svg {
+      transform: scale(-1);
+    }
+  }
+}
+
+@keyframes blinker {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+// ***** MAIN END *****
+
+// ***** SERVICES START *****
+.services {
+  & .layout__footer {
+    padding-top: 52px;
+  }
+}
+.service {
+  flex-grow: 1;
+  padding: 28px 28px 32px;
+  margin: 0 20px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+
+  @media screen and (max-width: $size-xl) {
+    padding: 20px 25px;
+  }
+
+  @media screen and (max-width: $size-lg) {
+    margin: 0 10px;
+    padding: 15px 20px;
+  }
+  @media screen and (max-width: $size-md) {
+    margin: 0 0 12px;
+  }
+
+  &__wrap {
+    display: flex;
+    margin: 0 -20px;
+
+    @media screen and (max-width: $size-md) {
+      display: block;
+      margin: 0;
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 46px;
+
+    @media screen and (max-width: $size-lg) {
+      margin-bottom: 24px;
+    }
+  }
+  &__title {
+    font-size: 32px;
+    line-height: 40px;
+    margin-bottom: -2px;
+    font-weight: 700;
+
+    @media screen and (max-width: $size-xl) {
+      font-size: 28px;
+      line-height: 36px;
+      margin-bottom: 0;
+    }
+
+    @media screen and (max-width: $size-lg) {
+      font-size: 24px;
+      line-height: 32px;
+    }
+
+    @media screen and (max-width: $size-md) {
+      font-size: 20px;
+      line-height: 28px;
+    }
+  }
+  &__subtitle {
+    color: $grey300;
+    font-size: 16px;
+    line-height: 24px;
+
+    @media screen and (max-width: $size-lg) {
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    @media screen and (max-width: $size-md) {
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+  &__icon {
+    width: 56px;
+
+    @media screen and (max-width: $size-xl) {
+      width: 50px;
+    }
+
+    @media screen and (max-width: $size-lg) {
+      width: 45px;
+    }
+  }
+  &__list p {
+    position: relative;
+    color: $grey100;
+    font-size: 16px;
+    line-height: 24px;
+
+    @media screen and (max-width: $size-lg) {
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 4px;
+      border-radius: 4px;
+      background-color: $grey400;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 8px;
+
+      @media screen and (max-width: $size-xl) {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+// ***** SERVICES END *****
+
+// ***** INSTRUMENTS START *****
+
+#instruments {
+  background-image: url("images/bg_instruments.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.instruments {
+  &__container {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: -1px;
+      width: 1px;
+      height: 100%;
+      background: linear-gradient(rgba(255, 255, 255, 0.001), $grey350);
+    }
+  }
+
+  &__img {
+    position: relative;
+
+    @media screen and (max-width: $size-md) {
+      padding-top: 130px;
+    }
+
+    @media screen and (max-width: $size-md) {
+      padding-top: 50px;
+    }
+
+    & img {
+      position: absolute;
+      bottom: -11px;
+      right: 0;
+      width: 420px;
+
+      @media screen and (max-width: $size-xl) {
+        bottom: 3px;
+        width: 400px;
+      }
+
+      @media screen and (max-width: $size-lg) {
+        width: 310px;
+      }
+
+      @media screen and (max-width: $size-md) {
+        position: static;
+        width: 100%;
+      }
+    }
+  }
+}
+
+// ***** INSTRUMENTS END *****
+
+// ***** REVIEWS START *****
+
+.reviews {
+  & .layout {
+    z-index: 1;
+    position: relative;
+
+    &__title-main {
+      margin-bottom: 50px;
+    }
+
+    &__footer {
+      @media screen and (max-width: $size-md) {
+        margin-top: 500px;
+        padding-right: 0;
+      }
+
+      @media screen and (max-width: $size-sm) {
+        margin-top: 415px;
+      }
+    }
+  }
+
+  &__block {
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    @media screen and (max-width: $size-md) {
+      display: block;
+      right: auto;
+      top: auto;
+      left: 0;
+      bottom: 0;
+      height: 450px;
+      width: 100%;
+    }
+
+    @media screen and (max-width: $size-sm) {
+      height: 400px;
+    }
+
+    &-bg {
+      display: none;
+      width: 435px;
+
+      @media screen and (max-width: $size-md) {
+        display: inline;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &-info {
+      position: absolute;
+      right: 256px;
+      bottom: 55px;
+      padding: 104px 28px 98px;
+      font-weight: 700;
+      text-align: center;
+      background: $white06;
+      backdrop-filter: blur(22px);
+      border-radius: 20px;
+
+      @media screen and (max-width: $size-xl) {
+        padding: 90px 28px;
+        right: 155px;
+      }
+
+      @media screen and (max-width: $size-lg) {
+        right: 75px;
+        padding: 75px 25px;
+      }
+
+      @media screen and (max-width: $size-md) {
+        left: 50%;
+        right: auto;
+        bottom: 420px;
+        transform: translateX(-50%);
+        padding: 16px 30px;
+        display: flex;
+        align-items: center;
+      }
+      @media screen and (max-width: $size-sm) {
+        padding: 10px 15px;
+        bottom: 375px;
+      }
+    }
+
+    &-wrap {
+      flex-grow: 1;
+      min-width: 120px;
+    }
+
+    &-performance {
+      font-size: 96px;
+      line-height: 104px;
+      color: $primary;
+      margin-bottom: 28px;
+
+      @media screen and (max-width: $size-xl) {
+        font-size: 85px;
+        line-height: 90px;
+        margin-bottom: 30px;
+      }
+
+      @media screen and (max-width: $size-lg) {
+        font-size: 70px;
+        line-height: 80px;
+        margin-bottom: 20px;
+      }
+
+      @media screen and (max-width: $size-md) {
+        margin-bottom: 0;
+        margin-right: 10px;
+        flex-shrink: 0;
+      }
+
+      @media screen and (max-width: $size-sm) {
+        font-size: 56px;
+        line-height: 64px;
+      }
+    }
+
+    &-title {
+      font-size: 14px;
+      line-height: 20px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+
+      @media screen and (max-width: $size-sm) {
+        font-size: 12px;
+        line-height: 16px;
+        margin-bottom: 0;
+      }
+    }
+
+    &-img {
+      width: 80px;
+
+      @media screen and (max-width: $size-sm) {
+        width: 60px;
+      }
+    }
+  }
+}
+
+// ***** REVIEWS END *****
+
+// ***** ABOUT START *****
+
+.about {
+  & .layout__description {
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 50px;
+  }
+
+  & .container {
+    position: relative;
+  }
+
+  &__block {
+    position: absolute;
+    width: 702px;
+    height: 702px;
+    bottom: -68px;
+    right: -262px;
+
+    @media screen and (max-width: $size-xl) {
+      width: 650px;
+      height: 650px;
+      right: -200px;
+    }
+
+    @media screen and (max-width: $size-lg) {
+      width: 550px;
+      height: 570px;
+    }
+
+    @media screen and (max-width: $size-md) {
+      position: relative;
+      width: 100%;
+      left: auto;
+      right: auto;
+      bottom: auto;
+
+      height: 380px;
+      margin-top: 50px;
+    }
+
+    @media screen and (max-width: $size-sm) {
+      height: 360px;
+    }
+
+    &-bg {
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      pointer-events: none;
+
+      @media screen and (max-width: $size-md) {
+        left: 40px;
+        width: 450px;
+      }
+
+      @media screen and (max-width: $size-sm) {
+        left: 30px;
+        width: 400px;
+      }
+    }
+
+    &-item {
+      position: absolute;
+      padding: 16px;
+      background: $white06;
+      backdrop-filter: blur(22px);
+      border-radius: 12px;
+      width: 201px;
+      font-size: 16px;
+      line-height: 24px;
+
+      @media screen and (max-width: $size-lg) {
+        width: 170px;
+        font-size: 14px;
+        line-height: 20px;
+      }
+
+      @media screen and (max-width: $size-sm) {
+        width: 48%;
+        min-width: 140px;
+        max-width: 150px;
+        padding: 12px;
+        font-size: 12px;
+        line-height: 16px;
+      }
+
+      &.item-1 {
+        top: 72px;
+        left: 14px;
+
+        @media screen and (max-width: $size-lg) {
+          top: 60px;
+          left: 0px;
+        }
+
+        @media screen and (max-width: $size-md) {
+          right: auto;
+          top: 0;
+          left: 20px;
+        }
+
+        @media screen and (max-width: $size-sm) {
+          left: 0;
+        }
+      }
+
+      &.item-2 {
+        top: 144px;
+        left: 303px;
+
+        @media screen and (max-width: $size-lg) {
+          top: 130px;
+          left: 220px;
+        }
+
+        @media screen and (max-width: $size-md) {
+          right: auto;
+          top: 50px;
+          left: 245px;
+        }
+
+        @media screen and (max-width: $size-sm) {
+          right: 0;
+          left: auto;
+        }
+      }
+
+      &.item-3 {
+        top: 248px;
+        left: 62px;
+
+        @media screen and (max-width: $size-lg) {
+          top: 210px;
+          left: 30px;
+        }
+
+        @media screen and (max-width: $size-md) {
+          right: auto;
+          top: 160px;
+          left: 50px;
+        }
+      }
+    }
+
+    &-icon {
+      width: 32px;
+      margin-bottom: 22px;
+
+      @media screen and (max-width: $size-lg) {
+        margin-bottom: 20px;
+      }
+
+      @media screen and (max-width: $size-sm) {
+        width: 24px;
+        margin-bottom: 12px;
+      }
+    }
+
+    &-text {
+      color: $grey100;
+    }
+  }
+}
+// ***** ABOUT END *****
+
+// ***** CONTACTS START *****
+
+#contacts {
+  background-image: url("images/bg_contacts.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.contacts {
+  &__wrap {
+    display: flex;
+    align-items: center;
+
+    @media screen and (max-width: $size-md) {
+      display: block;
+      margin-top: 90px;
+    }
+  }
+  &__card {
+    min-height: 286px;
+    flex-grow: 1;
+    width: 50%;
+    background: $white06;
+    backdrop-filter: blur(13px);
+    border-radius: 20px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @media screen and (max-width: $size-xl) {
+      min-height: 260px;
+    }
+
+    @media screen and (max-width: $size-lg) {
+      padding: 20px;
+      min-height: auto;
+      align-self: stretch;
+    }
+
+    @media screen and (max-width: $size-md) {
+      width: 100%;
+    }
+
+    &-title {
+      font-size: 32px;
+      line-height: 40px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+
+      @media screen and (max-width: $size-xl) {
+        font-size: 26px;
+        line-height: 32px;
+        margin-bottom: 15px;
+      }
+
+      @media screen and (max-width: $size-lg) {
+        font-size: 23px;
+        line-height: 24px;
+        margin-bottom: 10px;
+      }
+
+      & span {
+        display: inline-block;
+        position: relative;
+        padding-left: 36px;
+        margin-left: 10px;
+        color: $grey100;
+
+        @media screen and (max-width: $size-xl) {
+          padding-left: 30px;
+        }
+
+        @media screen and (max-width: $size-lg) {
+          padding-left: 28px;
+        }
+      }
+
+      & img {
+        position: absolute;
+        left: 0;
+        top: 30%;
+        width: 36px;
+
+        @media screen and (max-width: $size-xl) {
+          top: 30%;
+          width: 30px;
+        }
+        @media screen and (max-width: $size-lg) {
+          top: 26%;
+          width: 28px;
+        }
+      }
+    }
+
+    &-description {
+      @media screen and (max-width: $size-xl) {
+        font-size: 14px;
+        line-height: 20px;
+      }
+
+      @media screen and (max-width: $size-md) {
+        margin-bottom: 35px;
+      }
+
+      @media screen and (max-width: $size-sm) {
+        margin-bottom: 25px;
+      }
+    }
+  }
+  &__divider {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $grey400;
+    border-radius: 12px;
+    font-weight: 700;
+    transform: rotate(-15deg);
+    z-index: 1;
+    flex-shrink: 0;
+
+    @media screen and (max-width: $size-xl) {
+      width: 40px;
+      height: 40px;
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    @media screen and (max-width: $size-md) {
+      position: relative;
+      margin: -10px auto;
+    }
+  }
+}
+.form {
+  &__input {
+    position: relative;
+    margin-bottom: 20px;
+
+    @media screen and (max-width: $size-lg) {
+      margin: 15px 0;
+    }
+
+    @media screen and (max-width: $size-md) {
+      margin: 0 0 15px;
+    }
+
+    &.success input {
+      border-bottom: 1px solid $success;
+    }
+
+    &.error input {
+      border-bottom: 1px solid $error;
+    }
+
+    & input {
+      transition: 0.4s;
+
+      &:hover {
+        background: $white06;
+      }
+      @media screen and (max-width: $size-lg) {
+        font-size: 14px;
+        line-height: 20px;
+        padding: 8px 30px;
+      }
+
+      &::-webkit-input-placeholder {
+        font-size: 14px;
+        line-height: 20px;
+      }
+    }
+
+    & svg {
+      width: 20px;
+      position: absolute;
+      left: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+
+      & path {
+        transition: 0.3s;
+      }
+
+      @media screen and (max-width: $size-lg) {
+        left: 4px;
+      }
+    }
+
+    &.active svg path {
+      stroke: $white;
+    }
+
+    &-message {
+      transition: 0.4s;
+      position: absolute;
+      left: 5px;
+      bottom: -15px;
+      width: 100%;
+      font-size: 10px;
+      line-height: 12px;
+      color: $success;
+      opacity: 0;
+
+      @media screen and (max-width: $size-lg) {
+        bottom: -13px;
+      }
+    }
+  }
+
+  &__btn {
+    display: block;
+    width: 100%;
+    padding: 12px 24px;
+    background: $black100;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 20px;
+    text-transform: uppercase;
+    color: $white;
+    transition: 0.4s;
+
+    &:hover,
+    &:focus {
+      background: $grey500;
+    }
+
+    &:disabled,
+    &:disabled:hover,
+    &:disabled:focus {
+      cursor: default;
+      background: $black100;
+      color: $grey500;
+
+      svg path {
+        stroke: $grey500;
+      }
+    }
+
+    @media screen and (max-width: $size-lg) {
+      padding: 10px 24px;
+    }
+  }
+}
+
+// ***** CONTACTS END *****

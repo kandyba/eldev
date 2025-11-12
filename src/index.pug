@@ -1,0 +1,252 @@
+include pug/_head
+body
+  //- .preloader
+  header 
+    .container
+      .nav
+        a.nav__logo.link_to(data-id="main")
+          img(src=require("./images/logo.svg"), alt="logo")
+        .nav__links
+          ul.nav__links-wrap.container
+            li.nav__link
+              a.link_to(data-id="services")
+                span services
+            li.nav__link
+              a.link_to(data-id="instruments")
+                span instruments
+            li.nav__link
+              a.link_to(data-id="reviews")
+                span reviews
+            li.nav__link
+              a.link_to(data-id="about")
+                span about
+            li.nav__link
+              a.link_to(data-id="contacts")
+                span contacts
+        .nav__hamburger
+          span
+          span
+          span
+        button.button.nav__action
+          span Contact us
+          svg(viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg")
+            path(d="M12.6666 3.6665L3.33329 12.9998" stroke="#ffffff" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round")
+            path(d="M12.6666 10.5132V3.6665H5.81996" stroke="#ffffff" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round")
+
+  .sidebar
+    .sidebar__dot.active(data-id="main")
+    .sidebar__dot(data-id="services")
+    .sidebar__dot(data-id="instruments")
+    .sidebar__dot(data-id="reviews")
+    .sidebar__dot(data-id="about")
+    .sidebar__dot(data-id="contacts")
+  main
+    section#main.main.relative
+      .background
+        img.background__item(src=require("./images/main_img.jpg"), alt="developer")
+        img.main__highlight(src=require("./images/highlight.svg"), alt="lines")
+      .container.h-100
+        .layout
+          .layout__top
+            .main__title
+              h2
+                span.light= "< "
+                span full
+                span.light= " >" 
+              h2.white development  
+              h2
+                span cycle 
+                span.light / 
+          .layout__footer
+            .scroll.hidden
+                img.scroll__icon(src=require("./images/mouse.svg"), alt="mouse")
+                .scroll__label.link_to(data-id="contacts") scroll down
+            p.main__label-sm for your web product
+            button.button.main__action
+              span Contact us
+              svg(viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg")
+                path(d="M12.6666 3.6665L3.33329 12.9998" stroke="#ffffff" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round")
+                path(d="M12.6666 10.5132V3.6665H5.81996" stroke="#ffffff" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round")
+            img.main__highlight-sm(src=require("./images/highlight.svg"), alt="lines")
+        img.main__block(src=require("./images/main_img.jpg"), alt="developer")
+        .scroll.main__scroll.link_to(data-id="contacts")
+                 svg.scroll__icon(viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg")
+                  path(d="M12.0466 6.38016L7.99998 2.3335L3.95331 6.38016" stroke="#4F4F4F" stroke-width="0.8" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round")
+                  path(d="M8 13.6668V2.44678" stroke="#4F4F4F" stroke-width="0.8" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round")
+
+                 .scroll__label Scroll down
+
+    section#services.services
+      .container.h-100
+        .layout
+          .layout__top
+            h4.layout__title services
+            h2.layout__title-main What we offer
+          .layout__bottom 
+            .service__wrap
+              .service
+                .service__header
+                  div
+                    .service__title Design 
+                    .service__subtitle services
+                  img.service__icon(src=require("./images/service_1.svg"), alt="Design icon")
+                .service__list
+                  p web design
+                  p graphic design
+                  p logo & branding
+                  p icons design
+              .service
+                .service__header
+                  div
+                    .service__title Coding 
+                    .service__subtitle services
+                  img.service__icon(src=require("./images/service_2.svg"), alt="Coding icon")
+                .service__list
+                  p web applications
+                  p websites
+                  p psd-to-html
+              .service
+                .service__header
+                  div
+                    .service__title Testing  
+                    .service__subtitle services
+                  img.service__icon(src=require("./images/service_3.svg"), alt="Testing")
+                .service__list
+                  p quality assurance
+                  p version control
+                  p project management
+            .layout__footer
+              .scroll.hidden
+                 img.scroll__icon(src=require("./images/mouse.svg"), alt="mouse")
+                 .scroll__label keep scrolling
+              a.link(href="#" target="_blank")
+                 .link__label Contact us to get estimation
+                 img.link__icon(src=require("./images/arrow.svg"), alt="Link arrow")
+
+    section#instruments
+      .container.instruments__container.h-100
+        .layout
+          .layout__top
+            h4.layout__title instruments
+            h2.layout__title-main Our tech stack
+          .layout__bottom 
+            .layout__content
+              p.layout__text Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.
+            .layout__footer
+              .scroll.hidden
+                 img.scroll__icon(src=require("./images/mouse.svg"), alt="mouse")
+                 .scroll__label keep scrolling
+              .instruments__img
+                img(src=require("./images/icons.png"), alt="JS frameworks")
+
+    section#reviews.reviews.relative
+      .background
+        img.background__item(src=require("./images/reviews_img.jpg"), alt="developer")
+      .container.h-100.relative
+        .layout
+          .layout__top
+            h4.layout__title reviews
+            h2.layout__title-main We are trusted
+          .layout__bottom 
+            .layout__content
+              .layout__text.relative
+                img.quotes(src=require("./images/quotes.svg"), alt="quotes")
+                | I liked to work with Serhii (CEO). 
+                span.text-dark  I had Figma design to transform into HTML/CSS. He gave me estimates and later introduced 
+                | good proposals for several features
+                span.text-dark  designer didn't mentioned initially. Several bugs I've found after development was fixed 
+                | fast without delays ...
+              .caption
+                img.caption__img(src=require("./images/review_photo.png"), alt="mouse")
+                .caption__info 
+                  .caption__name Hallmark Channel,
+                  .caption__job-title customer
+            .layout__footer
+              .scroll.hidden
+                 img.scroll__icon(src=require("./images/mouse.svg"), alt="mouse")
+                 .scroll__label keep scrolling
+              //- a.link(href="#" target="_blank")
+              //-    .link__label Read all reviews
+              //-    img.link__icon(src=require("./images/arrow.svg"), alt="Link arrow")
+        .reviews__block
+          img.reviews__block-bg(src=require("./images/reviews_img.jpg"), alt="people group")
+        .reviews__block-info
+          .reviews__block-performance 100%
+          .reviews__block-wrap
+            .reviews__block-title job success on
+            img.reviews__block-img(src=require("./images/upwork_logo.svg"), alt="Link arrow")
+  
+    section#about.about
+      .container.h-100.relative
+        .layout
+          .layout__top
+            h4.layout__title about
+            h2.layout__title-main High quality work
+            p.layout__description - that is what our customers say about ElDev.
+          .layout__bottom 
+            .layout__content
+              .layout__text.relative
+                img.quotes(src=require("./images/quotes.svg"), alt="quotes")
+                | Receiving such a positive feedback gives an enormous motivation boost. Our professionals always make sure that all requested and necessary work is done in the best way.
+              .caption
+                img.caption__img(src=require("./images/about_photo.png"), alt="photo")
+                .caption__info 
+                  .caption__name Serhii,
+                  .caption__job-title CEO
+            .layout__footer.hidden
+              .scroll
+                 img.scroll__icon(src=require("./images/mouse.svg"), alt="mouse")
+                 .scroll__label keep scrolling
+        .about__block
+          img.about__block-bg(src=require("./images/bg_earth.png"), alt="earth vector")
+          .about__block-item.item-1
+            img.about__block-icon(src=require("./images/avatar.svg"), alt="user icon")
+            p.about__block-text “I’m very pleased with the result”
+          .about__block-item.item-2
+            img.about__block-icon(src=require("./images/avatar.svg"), alt="user icon")
+            p.about__block-text “Perfect details approach!”
+          .about__block-item.item-3
+            img.about__block-icon(src=require("./images/avatar.svg"), alt="user icon")
+            p.about__block-text “I received exactly what I needed”
+ 
+    section#contacts
+      .container.h-100
+        .layout
+          .layout__top
+            h4.layout__title contacts
+            h2.layout__title-main Have a project idea?
+          .layout__bottom 
+            .contacts__wrap
+              .contacts__card
+                div
+                  h3.contacts__card-title
+                    | Contact us via 
+                    span
+                      img(src=require("./images/upwork.svg"), alt="upwork")
+                      |work
+                  p.contacts__card-description.text-dark Explore our works and contact us for consultation
+                div
+                  a.link(href="#" target="_blank")
+                    .link__label Contact
+                    img.link__icon(src=require("./images/arrow.svg"), alt="Link arrow")
+              .contacts__divider OR
+              .contacts__card
+                div
+                  h3.contacts__card-title We will contact you via email
+                  p.contacts__card-description.text-dark Fill in the contact form and we will contact you to email
+                div
+                  form(action="")
+                    .form__input
+                      input(type="text" placeholder="Write your email here") 
+                      svg(viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg")
+                        path(d="M14.1666 17.0832H5.83329C3.33329 17.0832 1.66663 15.8332 1.66663 12.9165V7.08317C1.66663 4.1665 3.33329 2.9165 5.83329 2.9165H14.1666C16.6666 2.9165 18.3333 4.1665 18.3333 7.08317V12.9165C18.3333 15.8332 16.6666 17.0832 14.1666 17.0832Z" stroke="#4F4F4F" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round")
+                        path(d="M14.1667 7.5L11.5584 9.58333C10.7 10.2667 9.2917 10.2667 8.43337 9.58333L5.83337 7.5" stroke="#4F4F4F" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round")
+                      .form__input-message Request sent. We will contact you soon.
+                    button.form__btn(disabled) send request
+            .layout__footer
+              .scroll
+                 svg.scroll__icon(viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg")
+                  path(d="M12.0466 6.38016L7.99998 2.3335L3.95331 6.38016" stroke="#4F4F4F" stroke-width="0.8" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round")
+                  path(d="M8 13.6668V2.44678" stroke="#4F4F4F" stroke-width="0.8" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round")
+
+                 .scroll__label.link_to(data-id="main") Go up
